@@ -31,7 +31,7 @@ USER Table
 Association
 has_many :messages
 has_many :members
-has_many :groups
+has_many :groups,through:members
 
 
 MESSAGE Table
@@ -39,6 +39,7 @@ MESSAGE Table
 |text|text|
 |image|string|
 |user_id|integer|null:false,foreign_key: true|
+|group_id|integer|null:false,foreign_key:true|
 
 Association
 belong_to :user
@@ -52,6 +53,7 @@ GROUP Table
 Association
 has_many :messages
 has_many :members
+has_many :users,through:members
 
 GROUP_USER Table
 |Column|user_id|group_id|
