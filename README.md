@@ -22,3 +22,44 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+USER Table
+｜Column｜name｜email｜password｜
+｜name｜string｜null：false｜
+|email|string|null:false
+|password|string|null:false
+
+Association
+has_many :messages
+has_many :members
+has_many :groups,through:members
+
+
+MESSAGE Table
+｜Column｜text｜image｜user＿ID｜group＿ID|
+|text|text|
+|image|string|
+|user_id|integer|null:false,foreign_key: true|
+|group_id|integer|null:false,foreign_key:true|
+
+Association
+belong_to :user
+belong_to :group
+
+
+GROUP Table
+|Column|name|
+|name|string|null:false|
+
+Association
+has_many :messages
+has_many :members
+has_many :users,through:members
+
+GROUP_USER Table
+|Column|user_id|group_id|
+|user_id|integra|null:false,foreign_key:true|
+|group_id|integer|null:false,foreign_key:true|
+
+Association
+belongs_to :group
+belongs_to :user
